@@ -55,7 +55,7 @@ int num_arm = 0;
  	 fscanf(fp, "%d %d %d", &nArmarios, &nDocumentos, &nAssuntos);	
 	}
 	
-  // Criação dos armários e pesos
+  // Criaï¿½ï¿½o dos armï¿½rios e pesos
   Ar *armarios = (Ar*) malloc(nArmarios * sizeof(Ar));
   for (i = 0; i < nArmarios; i++) {
     armarios[i].idA = i;
@@ -65,7 +65,7 @@ int num_arm = 0;
     armarios[i].numDocs = 0;
   }
   
-  // Criação dos documentos e criação de asuntos
+  // Criaï¿½ï¿½o dos documentos e criaï¿½ï¿½o de asuntos
   Dc *documentos = (Dc*) malloc(nDocumentos * sizeof(Dc));
   for (i = 0; i < nDocumentos; i++) {
   	int aux;
@@ -79,15 +79,15 @@ int num_arm = 0;
     documentos[i].prox = NULL;
     documentos[i].ant = NULL;
 
-    // Adiciona o documento no armário correspondente
-    int resto = documentos[i].idD % nArmarios;   //pega o resto da divisão
-    Ar *armario = &armarios[resto];            //cria ponteiro que aponta para o endereço armario em que vamos guardar o documento
+    // Adiciona o documento no armï¿½rio correspondente
+    int resto = documentos[i].idD % nArmarios;   //pega o resto da divisï¿½o
+    Ar *armario = &armarios[resto];            //cria ponteiro que aponta para o endereï¿½o armario em que vamos guardar o documento
     documentos[i].prox = armario->listDoc;
-	documentos[i].armarioPertence=resto;    //novo documento aponta para o primeiro documento daquele armário
+	documentos[i].armarioPertence=resto;    //novo documento aponta para o primeiro documento daquele armï¿½rio
     if (armario->listDoc != NULL) {
    armario->listDoc->ant = &documentos[i];
 	}
-    armario->listDoc = &documentos[i];      //ponteiro daquele armário aponta para novo documento
+    armario->listDoc = &documentos[i];      //ponteiro daquele armï¿½rio aponta para novo documento
     
     armario->numDocs++;
   }
@@ -100,7 +100,7 @@ calculaPeso(nArmarios, nAssuntos, armarios);
 int control;
 do{
 control=0;
- //Organização dos documentos nos armários com base na distância
+ //Organizaï¿½ï¿½o dos documentos nos armï¿½rios com base na distï¿½ncia
   for(i = 0; i < nDocumentos; i++) {
   double menorDistancia = -1;
   int indiceMenorDistancia = -1;
@@ -119,14 +119,14 @@ control=0;
   }
 
 
-// Adiciona o documento no armário com a menor distância
+// Adiciona o documento no armï¿½rio com a menor distï¿½ncia
 	Dc *doc = &documentos[i];
 	Ar *armario = &armarios[indiceMenorDistancia];
 		if(doc->armarioPertence!=armario->idA)
 		control=1;
     
-		// Remove o documento da lista do armário anterior, se houver
-		armarios[doc->armarioPertence].numDocs--; //diminuir o peso do armario aonde o documento sairá	
+		// Remove o documento da lista do armï¿½rio anterior, se houver
+		armarios[doc->armarioPertence].numDocs--; //diminuir o peso do armario aonde o documento sairï¿½	
 		//SE ESTIVER NO MEIO
 		if(doc->prox!=NULL&&doc->ant!=NULL){
 		 doc->ant->prox = doc->prox;
@@ -143,7 +143,7 @@ control=0;
 		}
 		else
 		armarios[doc->armarioPertence].listDoc=NULL;
-		// Insere o documento na lista do armário selecionado
+		// Insere o documento na lista do armï¿½rio selecionado
 		if (armario->listDoc != NULL) {
 		    armario->listDoc->ant = doc;
 		    doc->prox=armario->listDoc;
@@ -162,7 +162,7 @@ control=0;
   }while(control==1);
   ////////////////////////////////////
   
- // Impressão dos armários e seus documentos
+ // Impressï¿½o dos armï¿½rios e seus documentos
  	char *ponto = strtok(filename, ".");
  	char aux[50];
  	strcpy(aux, ponto);
@@ -172,7 +172,7 @@ control=0;
 	}
 	fclose(fr);
 ///////////////////////////////////////////////////////////////////////////////////////////////
-  // Libera a memória alocada
+  // Libera a memï¿½ria alocada
   for (i = 0; i < nArmarios; i++) {
     free(armarios[i].peso);
   }
@@ -184,7 +184,7 @@ control=0;
   printf("Classificacao feita com sucesso!!! (^_^)");
   return 0;
 }
- //calcular os pesos dos armários
+ //calcular os pesos dos armï¿½rios
  void calculaPeso(int nArmarios,int nAssuntos, Ar *armarios){
 	 int indice;
  double soma=0;
